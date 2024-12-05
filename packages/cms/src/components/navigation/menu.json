@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_navigation_menus",
+  "info": {
+    "displayName": "Menu",
+    "icon": "cursor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
