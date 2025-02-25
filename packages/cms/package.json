@@ -9,6 +9,8 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
+    "start:dev": "NODE_ENV=development ENV_PATH=.env.development strapi develop",
+    "start:prod": "NODE_ENV=production ENV_PATH=.env.production strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
