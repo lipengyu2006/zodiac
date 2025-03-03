@@ -29,30 +29,21 @@ import {
 } from '@/components/ui/sidebar'
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
-      title: 'Playground',
-      url: '#',
+      title: 'Summaries',
+      url: '/dashboard/summaries',
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: 'History',
-          url: '#',
+          title: 'List',
+          url: '/dashboard/summaries',
         },
         {
-          title: 'Starred',
-          url: '#',
+          title: 'Add',
+          url: '/dashboard/summaries/add',
           isActive: true,
-        },
-        {
-          title: 'Settings',
-          url: '#',
         },
       ],
     },
@@ -153,7 +144,18 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  isLogin,
+  user,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  isLogin: boolean
+  readonly user: {
+    username: string
+    email: string
+    avatar: string
+  }
+}) {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -174,11 +176,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {isLogin && <NavMain items={data.navMain} />}
+        {!isLogin && <NavSecondary items={data.navSecondary} />}
       </SidebarContent>
-      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
+      {isLogin && (
+        <SidebarFooter>
+          <NavUser user={user} />
+        </SidebarFooter>
+      )}
     </Sidebar>
   )
 }

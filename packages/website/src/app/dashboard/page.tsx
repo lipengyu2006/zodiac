@@ -1,12 +1,13 @@
 import LayoutWithBreadcrumb from '@/app/layout-with-breadcrumb'
-import { SigninForm } from '@/components/forms/SigninForm'
 
 export default function Page() {
-  const breadcrumbItems = [{ label: 'Home', href: '/' }, { label: 'Signin' }]
+  const breadcrumbItems = [{ label: 'Home', href: '/' }]
 
   return (
     <LayoutWithBreadcrumb breadcrumbItems={breadcrumbItems}>
-      <SigninForm />
+      <div className="mx-auto w-full max-w-md">
+        <h1>Dashboard</h1>
+      </div>
     </LayoutWithBreadcrumb>
   )
 }
