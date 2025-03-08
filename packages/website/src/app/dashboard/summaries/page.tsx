@@ -50,8 +50,9 @@ export default async function SummariesRoute({
     { label: 'Summaries' },
   ]
 
-  const query = searchParams?.query ?? ''
-  const currentPage = Number(searchParams?.page) || 1
+  const search = await searchParams
+  const query = search?.query ?? ''
+  const currentPage = Number(search?.page) || 1
   const { data, meta } = await getSummaries(query, currentPage)
   const pageCount = meta?.pagination?.pageCount
 

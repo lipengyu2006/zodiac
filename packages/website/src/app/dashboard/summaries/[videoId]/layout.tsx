@@ -1,6 +1,7 @@
+import YouTubePlayer from '@/components/custom/clientYoutubePlayer'
 import { extractYouTubeID } from '@/lib/utils'
 import { getSummaryById } from '@/data/loaders'
-import ClientYouTubePlayer from '@/components/custom/clientYoutubePlayer'
+import { notFound } from 'next/navigation'
 
 export default async function SummarySingleRoute({
   params,
@@ -9,17 +10,21 @@ export default async function SummarySingleRoute({
   readonly params: any
   readonly children: React.ReactNode
 }) {
-  const { videoId } = await params
-  const data = await getSummaryById(videoId)
-  if (data?.error?.status === 404) return <p>No Items Found</p>
-  const videoYTId = extractYouTubeID(data.videoId)
+  params = await params
+  console.log('params', params)
+  const data = await getSummaryById(params.videoId)
+  if (data?.error?.status === 404) return notFound()
+  console.log('videoId', data.videoId)
+  const videoId = extractYouTubeID(data.videoId)
 
   return (
     <div>
       <div className="grid h-full grid-cols-5 gap-4 p-4">
         <div className="col-span-3">{children}</div>
         <div className="col-span-2">
-          <ClientYouTubePlayer videoId={videoYTId as string} />
+          <div>
+            <YouTubePlayer videoId={videoId as string} />
+          </div>
         </div>
       </div>
     </div>
