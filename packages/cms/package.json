@@ -11,12 +11,12 @@
     "start": "strapi start",
     "start:dev": "NODE_ENV=development ENV_PATH=.env.development strapi develop",
     "start:prod": "NODE_ENV=production ENV_PATH=.env.production strapi start",
-    "strapi": "strapi"
+    "strapi": "NODE_ENV=development ENV_PATH=.env.development strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.10.3",
-    "@strapi/plugin-users-permissions": "5.10.3",
-    "@strapi/strapi": "5.10.3",
+    "@strapi/plugin-cloud": "5.11.0",
+    "@strapi/plugin-users-permissions": "5.11.0",
+    "@strapi/strapi": "5.11.0",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
     "mysql2": "3.9.8",
@@ -30,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5"
   },
   "engines": {
