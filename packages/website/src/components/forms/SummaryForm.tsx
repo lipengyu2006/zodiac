@@ -7,6 +7,7 @@ import { cn, extractYouTubeID } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
 import { SubmitButton } from '@/components/custom/SubmitButton'
 import { generateSummaryService } from '@/data/services/summary-service'
+import { createSummaryAction } from '@/data/actions/summary-actions'
 
 interface StrapiErrorsProps {
   message: string | null
@@ -47,7 +48,6 @@ export function SummaryForm({ className }: { readonly className?: string }) {
     toast.success('Generating Summary')
 
     const summaryResponseData = await generateSummaryService(processedVideoId)
-    console.log(summaryResponseData, 'Response from route handler')
 
     if (summaryResponseData.error) {
       setValue('')
@@ -61,7 +61,38 @@ export function SummaryForm({ className }: { readonly className?: string }) {
       return
     }
 
-    toast.success('Testing Toast')
+    const payload = {
+      data: {
+        title: `Summary for video: ${processedVideoId}`,
+        videoId: processedVideoId,
+        summary: summaryResponseData.data,
+      },
+    }
+
+    try {
+      await createSummaryAction(payload)
+      toast.success('Summary Created')
+      // Reset form after successful creation
+      setValue('')
+      setError(INITIAL_STATE)
+    } catch (error) {
+      let errorMessage =
+        'An unexpected error occurred while creating the summary'
+
+      if (error instanceof Error) {
+        errorMessage = error.message
+      } else if (typeof error === 'string') {
+        errorMessage = error
+      }
+
+      toast.error(errorMessage)
+      setError({
+        message: errorMessage,
+        name: 'Summary Error',
+      })
+      setLoading(false)
+      return
+    }
     setLoading(false)
   }
 
@@ -75,32 +106,32 @@ export function SummaryForm({ className }: { readonly className?: string }) {
     : ''
 
   return (
-    <form className={cn('space-y-4', className)} onSubmit={handleFormSubmit}>
-      <div className="grid space-y-4">
-        <div className="grid gap-4">
-          <Input
-            name="videoId"
-            placeholder={
-              error.message ? error.message : 'Youtube Video ID or URL'
-            }
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onMouseDown={clearError}
-            className={cn(
-              'col-span-5 w-full focus:text-black focus-visible:ring-pink-500',
-              errorStyles
-            )}
-            required
-          />
-        </div>
-      </div>
-      <div className="flex justify-start">
+    <div className="w-full max-w-[960px]">
+      <form
+        onSubmit={handleFormSubmit}
+        className="flex items-center justify-center gap-2"
+      >
+        <Input
+          name="videoId"
+          placeholder={
+            error.message ? error.message : 'Youtube Video ID or URL'
+          }
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onMouseDown={clearError}
+          className={cn(
+            'w-full focus:text-black focus-visible:ring-pink-500',
+            errorStyles
+          )}
+          required
+        />
+
         <SubmitButton
           text="Create Summary"
           loadingText="Creating Summary"
           loading={loading}
         />
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }

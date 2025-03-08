@@ -87,8 +87,6 @@ body {
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -97,3 +95,90 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* ************************** */
+/* markdown preview start */
+/* ************************** */
+
+.markdown-preview {
+  @apply text-base;
+  @apply overflow-auto;
+}
+
+.markdown-preview h1 {
+  @apply mb-4 mt-6 text-3xl font-bold;
+}
+
+.markdown-preview h2 {
+  @apply mb-3 mt-5 text-2xl font-semibold;
+}
+
+.markdown-preview h3 {
+  @apply mb-2 mt-4 text-xl font-medium;
+}
+
+.markdown-preview p {
+  @apply mb-4;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-preview ul {
+  @apply list-disc;
+}
+
+.markdown-preview ol {
+  @apply list-decimal;
+}
+
+.markdown-preview li {
+  @apply mb-2;
+}
+
+.markdown-preview a {
+  @apply text-blue-600 hover:underline;
+}
+
+.markdown-preview blockquote {
+  @apply my-4 border-l-4 border-gray-300 pl-4 italic;
+}
+
+.markdown-preview code {
+  @apply rounded bg-gray-100 px-1 py-0.5 font-mono text-sm;
+}
+
+.markdown-preview pre {
+  @apply mb-4 overflow-x-auto rounded bg-gray-100 p-4;
+}
+
+.markdown-preview pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-preview table {
+  @apply mb-4 w-full border-collapse;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.markdown-preview th {
+  @apply bg-gray-100 font-semibold;
+}
+
+.markdown-preview img {
+  @apply my-4 h-auto max-w-full;
+}
+
+.markdown-preview hr {
+  @apply my-8 border-t border-gray-300;
+}
+
+/* ************************** */
+/* markdown preview end       */
+/* ************************** */
