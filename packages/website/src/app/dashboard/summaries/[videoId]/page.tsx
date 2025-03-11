@@ -2,9 +2,9 @@ import { getSummaryById } from '@/data/loaders'
 import { SummaryCardForm } from '@/components/forms/SummaryCardForm'
 
 interface ParamsProps {
-  params: {
+  params: Promise<{
     videoId: string
-  }
+  }>
 }
 
 export default async function SummaryCardRoute(props: Readonly<ParamsProps>) {
