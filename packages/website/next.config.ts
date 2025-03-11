@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   basePath: '/tai',
-  assetPrefix: '/tai/',
+  assetPrefix: '/tai',
   images: {
     remotePatterns: [
       {
