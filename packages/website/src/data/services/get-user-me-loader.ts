@@ -26,6 +26,7 @@ export async function getUserMeLoader() {
     })
     const data = await response.json()
     if (data.error) return { ok: false, data: null, error: data.error }
+    console.log('user-data', data)
     return { ok: true, data: data, error: null }
   } catch (error) {
     console.log(error)
