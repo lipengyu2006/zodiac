@@ -34,7 +34,7 @@ export async function registerUserService(userData: RegisterUserProps) {
 
 export async function loginUserService(userData: LoginUserProps) {
   const url = new URL('/api/auth/local', baseUrl)
-
+  console.log('url', url)
   try {
     const response = await fetch(url, {
       method: 'POST',
