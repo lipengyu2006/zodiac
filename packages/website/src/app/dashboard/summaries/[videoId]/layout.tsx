@@ -10,10 +10,8 @@ export default async function SummarySingleRoute(props: {
   const params = await props.params
   const { children } = props
 
-  console.log('params', params)
   const data = await getSummaryById(params.videoId)
   if (data?.error?.status === 404) return notFound()
-  console.log('videoId', data.videoId)
   const videoId = extractYouTubeID(data.videoId)
 
   return (
