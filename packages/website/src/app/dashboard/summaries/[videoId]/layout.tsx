@@ -3,14 +3,13 @@ import { extractYouTubeID } from '@/lib/utils'
 import { getSummaryById } from '@/data/loaders'
 import { notFound } from 'next/navigation'
 
-export default async function SummarySingleRoute({
-  params,
-  children,
-}: {
-  readonly params: any
+export default async function SummarySingleRoute(props: {
+  readonly params: Promise<any>
   readonly children: React.ReactNode
 }) {
-  params = await params
+  const params = await props.params
+  const { children } = props
+
   console.log('params', params)
   const data = await getSummaryById(params.videoId)
   if (data?.error?.status === 404) return notFound()
