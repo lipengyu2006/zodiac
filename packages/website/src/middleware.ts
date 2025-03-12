@@ -18,6 +18,7 @@ export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname
   console.log('currentPath', currentPath)
   console.log('from middleware user-data', user)
+  console.log('request', request)
 
   if (isProtectedRoute(currentPath) && user.ok === false) {
     return NextResponse.redirect(new URL('/signin', request.url))
