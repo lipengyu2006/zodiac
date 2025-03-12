@@ -86,3 +86,12 @@ export function extractYouTubeID(urlOrID: string): string | null {
   // Return null if no match is found
   return null
 }
+
+export function getUrlWithBasePath(path: string, baseUrl: string) {
+  const basePath = process.env.NEXT_BASE_PATH || '' // 确保有默认值
+  return new URL(`${basePath}${path}`, baseUrl)
+}
+
+export function getBasePath() {
+  return process.env.NEXT_BASE_PATH || ''
+}

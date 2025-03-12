@@ -27,22 +27,24 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { getBasePath } from '@/lib/utils'
 
+const basePath = getBasePath()
 const data = {
   navMain: [
     {
       title: 'Summaries',
-      url: '/dashboard/summaries',
+      url: `${basePath}/dashboard/summaries`,
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
           title: 'List',
-          url: '/dashboard/summaries',
+          url: `${basePath}/dashboard/summaries`,
         },
         {
           title: 'Add',
-          url: '/dashboard/summaries/add',
+          url: `${basePath}/dashboard/summaries`,
           isActive: true,
         },
       ],
