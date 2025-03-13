@@ -1,40 +1,24 @@
-import { getAuthToken } from '@/data/services/get-token'
-import { mutateData } from '@/data/services/mutate-data'
 import { flattenAttributes } from '@/lib/utils'
-import { getStrapiURL } from '@/lib/utils'
+import { apiCall } from '@/data/services/api-call'
 
 export async function fileDeleteService(imageId: string) {
-  const authToken = await getAuthToken()
-  if (!authToken) throw new Error('No auth token found')
+  const response = await apiCall(`/api/upload/files/${imageId}`, {
+    method: 'DELETE',
+  })
 
-  const data = await mutateData('DELETE', `/api/upload/files/${imageId}`)
-  const flattenedData = flattenAttributes(data)
-
-  return flattenedData
+  if (!response.ok) throw response.error
+  return flattenAttributes(response.data)
 }
 
 export async function fileUploadService(image: any) {
-  const authToken = await getAuthToken()
-  if (!authToken) throw new Error('No auth token found')
-
-  const baseUrl = getStrapiURL()
-  const url = new URL('/api/upload', baseUrl)
-
   const formData = new FormData()
   formData.append('files', image, image.name)
 
-  try {
-    const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${authToken}` },
-      method: 'POST',
-      body: formData,
-    })
+  const response = await apiCall('/api/upload', {
+    method: 'POST',
+    formData,
+  })
 
-    const dataResponse = await response.json()
-
-    return dataResponse
-  } catch (error) {
-    console.error('Error uploading image:', error)
-    throw error
-  }
+  if (!response.ok) throw response.error
+  return response.data
 }

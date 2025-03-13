@@ -65,7 +65,7 @@ export function SummaryForm({ className }: { readonly className?: string }) {
       data: {
         title: `Summary for video: ${processedVideoId}`,
         videoId: processedVideoId,
-        summary: summaryResponseData.data,
+        summary: summaryResponseData.data.data,
       },
     }
 

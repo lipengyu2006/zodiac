@@ -1,7 +1,7 @@
 'use server'
 
 import { getAuthToken } from '@/data/services/get-token'
-import { mutateData } from '@/data/services/mutate-data'
+import { apiCall } from '@/data/services/api-call'
 import { flattenAttributes } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
@@ -18,8 +18,19 @@ export async function createSummaryAction(payload: Payload) {
   const authToken = await getAuthToken()
   if (!authToken) throw new Error('No auth token found')
 
-  const data = await mutateData('POST', '/api/summaries', payload)
-  const flattenedData = flattenAttributes(data)
+  const response = await apiCall('/api/summaries', {
+    method: 'POST',
+    body: payload,
+  })
+
+  if (!response.ok) {
+    throw new Error(
+      'Failed to create summary: ' +
+        (response.error?.message || 'Unknown error')
+    )
+  }
+
+  const flattenedData = flattenAttributes(response.data)
   redirect('/dashboard/summaries/' + flattenedData.documentId)
 }
 
@@ -34,9 +45,12 @@ export async function updateSummaryAction(prevState: any, formData: FormData) {
     },
   }
 
-  const responseData = await mutateData('PUT', `/api/summaries/${id}`, payload)
+  const response = await apiCall(`/api/summaries/${id}`, {
+    method: 'PUT',
+    body: payload,
+  })
 
-  if (!responseData) {
+  if (!response.ok || !response.data) {
     return {
       ...prevState,
       strapiErrors: null,
@@ -44,10 +58,10 @@ export async function updateSummaryAction(prevState: any, formData: FormData) {
     }
   }
 
-  if (responseData.error) {
+  if (response.error) {
     return {
       ...prevState,
-      strapiErrors: responseData.error,
+      strapiErrors: response.error,
       message: 'Failed to update summary.',
     }
   }
@@ -57,15 +71,17 @@ export async function updateSummaryAction(prevState: any, formData: FormData) {
   return {
     ...prevState,
     message: 'Summary updated successfully',
-    data: responseData,
+    data: response.data,
     strapiErrors: null,
   }
 }
 
 export async function deleteSummaryAction(id: string, prevState: any) {
-  const responseData = await mutateData('DELETE', `/api/summaries/${id}`)
+  const response = await apiCall(`/api/summaries/${id}`, {
+    method: 'DELETE',
+  })
 
-  if (!responseData) {
+  if (!response.ok) {
     return {
       ...prevState,
       strapiErrors: null,

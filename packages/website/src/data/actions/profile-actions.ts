@@ -1,9 +1,8 @@
 'use server'
 import { z } from 'zod'
-import qs from 'qs'
 
 import { getUserMeLoader } from '@/data/services/get-user-me-loader'
-import { mutateData } from '@/data/services/mutate-data'
+import { apiCall } from '@/data/services/api-call'
 import { flattenAttributes } from '@/lib/utils'
 
 import {
@@ -18,23 +17,21 @@ export async function updateProfileAction(
 ) {
   const rawFormData = Object.fromEntries(formData)
 
-  const query = qs.stringify({
-    populate: '*',
-  })
-
   const payload = {
     firstName: rawFormData.firstName,
     lastName: rawFormData.lastName,
     bio: rawFormData.bio,
   }
 
-  const responseData = await mutateData(
-    'PUT',
-    `/api/users/${userId}?${query}`,
-    payload
-  )
+  const response = await apiCall(`/api/users/${userId}`, {
+    method: 'PUT',
+    body: payload,
+    query: {
+      populate: '*',
+    },
+  })
 
-  if (!responseData) {
+  if (!response.ok || !response.data) {
     return {
       ...prevState,
       strapiErrors: null,
@@ -42,15 +39,15 @@ export async function updateProfileAction(
     }
   }
 
-  if (responseData.error) {
+  if (response.error) {
     return {
       ...prevState,
-      strapiErrors: responseData.error,
-      message: 'Failed to Register.',
+      strapiErrors: response.error,
+      message: 'Failed to Update Profile.',
     }
   }
 
-  const flattenedData = flattenAttributes(responseData)
+  const flattenedData = flattenAttributes(response.data)
 
   return {
     ...prevState,
@@ -153,12 +150,21 @@ export async function uploadProfileImageAction(
   const payload = { image: updatedImageId }
 
   // UPDATE USER PROFILE WITH NEW IMAGE
-  const updateImageResponse = await mutateData(
-    'PUT',
-    `/api/users/${userId}`,
-    payload
-  )
-  const flattenedData = flattenAttributes(updateImageResponse)
+  const updateImageResponse = await apiCall(`/api/users/${userId}`, {
+    method: 'PUT',
+    body: payload,
+  })
+
+  if (!updateImageResponse.ok) {
+    return {
+      ...prevState,
+      strapiErrors: updateImageResponse.error,
+      zodErrors: null,
+      message: 'Failed to Update Profile with New Image.',
+    }
+  }
+
+  const flattenedData = flattenAttributes(updateImageResponse.data)
 
   return {
     ...prevState,

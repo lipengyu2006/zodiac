@@ -16,8 +16,6 @@ const config = {
   secure: process.env.NODE_ENV === 'production',
 }
 
-console.log('config', config)
-
 const schemaRegister = z.object({
   username: z.string().min(3).max(20, {
     message: 'Username must be between 3 and 20 characters',

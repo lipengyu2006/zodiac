@@ -1,5 +1,4 @@
-import { getAuthToken } from './get-token'
-import { getStrapiURL } from '@/lib/utils'
+import { apiCall } from '@/data/services/api-call'
 import qs from 'qs'
 
 const query = qs.stringify({
@@ -7,29 +6,9 @@ const query = qs.stringify({
 })
 
 export async function getUserMeLoader() {
-  const baseUrl = getStrapiURL()
-
-  const url = new URL('/api/users/me', baseUrl)
-  url.search = query
-
-  const authToken = await getAuthToken()
-  if (!authToken) return { ok: false, data: null, error: null }
-
-  try {
-    const response = await fetch(url.href, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
-      },
-      cache: 'no-cache',
-    })
-    const data = await response.json()
-    if (data.error) return { ok: false, data: null, error: data.error }
-    console.log('user-data', data)
-    return { ok: true, data: data, error: null }
-  } catch (error) {
-    console.log(error)
-    return { ok: false, data: null, error: error }
-  }
+  return await apiCall('/api/users/me', {
+    method: 'GET',
+    cache: 'no-cache',
+    query, // 添加查询参数
+  })
 }

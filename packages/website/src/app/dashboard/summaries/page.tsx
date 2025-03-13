@@ -6,7 +6,6 @@ import { Search } from '@/components/custom/Search'
 import { PaginationComponent } from '@/components/custom/PaginationComponent'
 import LayoutWithBreadcrumb from '@/app/layout-with-breadcrumb'
 import { SummaryForm } from '@/components/forms/SummaryForm'
-import { promises } from 'dns'
 
 interface LinkCardProps {
   documentId: string

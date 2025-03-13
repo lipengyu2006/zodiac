@@ -17,9 +17,6 @@ function isProtectedRoute(path: string): boolean {
 export async function middleware(request: NextRequest) {
   const user = await getUserMeLoader()
   const currentPath = request.nextUrl.pathname
-  console.log('currentPath', currentPath)
-  console.log('from middleware user-data', user)
-  console.log('request', request)
 
   if (isProtectedRoute(currentPath) && user.ok === false) {
     return NextResponse.redirect(getUrlWithBasePath('/signin', request.url))

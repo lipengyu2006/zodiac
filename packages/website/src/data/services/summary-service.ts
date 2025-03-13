@@ -1,14 +1,15 @@
+import { apiCall } from '@/data/services/api-call'
+
 export async function generateSummaryService(videoId: string) {
-  const url = '/api/summarize'
-  try {
-    const response = await fetch(url, {
+  const response = await apiCall(
+    '/api/summarize',
+    {
       method: 'POST',
-      body: JSON.stringify({ videoId: videoId }),
-    })
-    return await response.json()
-  } catch (error) {
-    console.error('Failed to generate summary:', error)
-    if (error instanceof Error) return { error: { message: error.message } }
-    return { data: null, error: { message: 'Unknown error' } }
-  }
+      body: { videoId },
+    },
+    false,
+    true
+  )
+
+  return response
 }

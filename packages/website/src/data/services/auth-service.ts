@@ -1,4 +1,4 @@
-import { getStrapiURL } from '@/lib/utils'
+import { apiCall } from '@/data/services/api-call'
 
 interface RegisterUserProps {
   username: string
@@ -11,44 +11,39 @@ interface LoginUserProps {
   password: string
 }
 
-const baseUrl = getStrapiURL()
-
 export async function registerUserService(userData: RegisterUserProps) {
-  const url = new URL('/api/auth/local/register', baseUrl)
-
-  try {
-    const response = await fetch(url, {
+  const response = await apiCall(
+    '/api/auth/local/register',
+    {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...userData }),
+      body: userData,
       cache: 'no-cache',
-    })
+    },
+    false
+  )
 
-    return response.json()
-  } catch (error) {
-    console.error('Registration Service Error:', error)
+  if (!response.ok) {
+    console.error('Registration Service Error:', response.error)
   }
+
+  return response.data
 }
 
 export async function loginUserService(userData: LoginUserProps) {
-  const url = new URL('/api/auth/local', baseUrl)
-  console.log('baseurl', baseUrl)
-  console.log('url', url)
-  try {
-    const response = await fetch(url, {
+  const response = await apiCall(
+    '/api/auth/local',
+    {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...userData }),
+      body: userData,
       cache: 'no-cache',
-    })
+    },
+    false
+  )
 
-    return response.json()
-  } catch (error) {
-    console.error('Login Service Error:', error)
-    throw error
+  if (!response.ok) {
+    console.error('Login Service Error:', response.error)
+    throw response.error
   }
+
+  return response.data
 }

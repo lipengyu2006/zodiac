@@ -50,6 +50,17 @@ export function getStrapiURL() {
   return 'http://localhost:1337'
 }
 
+export function getFrontendURL() {
+  const hostname =
+    typeof window !== 'undefined' ? window.location.hostname : 'localhost'
+  const protocol =
+    typeof window !== 'undefined' ? window.location.protocol : 'http:'
+  const port = typeof window !== 'undefined' ? window.location.port : ''
+  const portPart = port && port !== '80' && port !== '443' ? `:${port}` : ''
+  const domain = `${protocol}//${hostname}${portPart}`
+  return domain
+}
+
 export function getStrapiMedia(url: string | null) {
   if (url == null) return null
   if (url.startsWith('data:')) return url
