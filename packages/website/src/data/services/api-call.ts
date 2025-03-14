@@ -36,7 +36,7 @@ export async function apiCall<T = any>(
   const url = isFrountend
     ? getNextUrlWithBasePath(path, baseUrl)
     : getStrapiUrlWithBasePath(path, baseUrl)
-
+  console.log('url', url)
   // 处理查询参数
   if (options.query) {
     if (typeof options.query === 'string') {
