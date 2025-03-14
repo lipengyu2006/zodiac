@@ -22,6 +22,7 @@ export async function getSummaries(queryString: string, currentPage: number) {
     method: 'GET',
     query,
   })
+  console.log('loaders:getSummaries:response', response)
   return flattenAttributes(response.data)
 }
 
