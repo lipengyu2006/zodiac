@@ -1,7 +1,8 @@
 import qs from 'qs'
 import {
+  getStrapiUrlWithBasePath,
+  getNextUrlWithBasePath,
   getStrapiURL,
-  getStrapiWithBasePath,
   getFrontendURL,
 } from '@/lib/utils'
 import { getAuthToken } from '@/data/services/get-token'
@@ -32,7 +33,9 @@ export async function apiCall<T = any>(
   const baseUrl = isFrountend ? getFrontendURL() : getStrapiURL()
   console.log('path', path)
   console.log('baseUrl', baseUrl)
-  const url = getStrapiWithBasePath(path, baseUrl)
+  const url = isFrountend
+    ? getNextUrlWithBasePath(path, baseUrl)
+    : getStrapiUrlWithBasePath(path, baseUrl)
 
   // 处理查询参数
   if (options.query) {
@@ -53,7 +56,6 @@ export async function apiCall<T = any>(
   // 添加认证token (如果需要)
   if (requiresAuth) {
     const authToken = await getAuthToken()
-    console.log('authToken', authToken)
     if (!authToken) {
       return { ok: false, data: null, error: 'No auth token found' }
     }

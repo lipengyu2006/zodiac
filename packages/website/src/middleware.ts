@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getUserMeLoader } from '@/data/services/get-user-me-loader'
-import { getUrlWithBasePath } from '@/lib/utils'
+import { getNextUrlWithBasePath } from '@/lib/utils'
 
 // Define an array of protected routes
 const protectedRoutes = [
@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname
 
   if (isProtectedRoute(currentPath) && user.ok === false) {
-    return NextResponse.redirect(getUrlWithBasePath('/signin', request.url))
+    return NextResponse.redirect(getNextUrlWithBasePath('/signin', request.url))
   }
 
   return NextResponse.next()
