@@ -1,30 +1,7 @@
-import { getAuthToken } from './services/get-token'
+import { apiCall } from '@/data/services/api-call'
 import qs from 'qs'
 
-import { flattenAttributes, getStrapiURL } from '@/lib/utils'
-
-const baseUrl = getStrapiURL()
-
-async function fetchData(url: string) {
-  const authToken = await getAuthToken()
-
-  const headers = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authToken}`,
-    },
-  }
-
-  try {
-    const response = await fetch(url, authToken ? headers : {})
-    const data = await response.json()
-    return flattenAttributes(data)
-  } catch (error) {
-    console.error('Error fetching data:', error)
-    throw error // or return null;
-  }
-}
+import { flattenAttributes } from '@/lib/utils'
 
 export async function getSummaries(queryString: string, currentPage: number) {
   const PAGE_SIZE = 2
@@ -41,11 +18,16 @@ export async function getSummaries(queryString: string, currentPage: number) {
       page: currentPage,
     },
   })
-  const url = new URL('/api/summaries', baseUrl)
-  url.search = query
-  return fetchData(url.href)
+  const response = await apiCall('/api/summaries', {
+    method: 'GET',
+    query,
+  })
+  return flattenAttributes(response.data)
 }
 
 export async function getSummaryById(summaryId: string) {
-  return fetchData(`${baseUrl}/api/summaries/${summaryId}`)
+  const response = await apiCall(`/api/summaries/${summaryId}`, {
+    method: 'GET',
+  })
+  return flattenAttributes(response.data)
 }
