@@ -101,6 +101,10 @@ export function extractYouTubeID(urlOrID: string): string | null {
 
 export function getNextUrlWithBasePath(path: string, baseUrl: string) {
   const basePath = process.env.NEXT_BASE_PATH || ''
+  console.log(
+    'getNextUrlWithBasePath:process.env.NEXT_BASE_PATH',
+    process.env.NEXT_BASE_PATH
+  )
   console.log('basePath', basePath)
   return new URL(`${basePath}${path}`, baseUrl)
 }
@@ -111,5 +115,9 @@ export function getStrapiUrlWithBasePath(path: string, baseUrl: string) {
 }
 
 export function getBasePath() {
+  console.log(
+    'getBasePath:process.env.NEXT_BASE_PATH',
+    process.env.NEXT_BASE_PATH
+  )
   return process.env.NEXT_BASE_PATH || ''
 }
