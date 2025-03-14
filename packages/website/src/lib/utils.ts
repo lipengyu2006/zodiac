@@ -46,8 +46,7 @@ export function flattenAttributes(data: any): any {
 }
 
 export function getStrapiURL() {
-  //return process.env.STRAPI_URL ?? 'http://localhost:1337'
-  return 'http://localhost:1337'
+  return process.env.STRAPI_URL ?? 'http://localhost:1337'
 }
 
 export function getFrontendURL() {
@@ -110,7 +109,9 @@ export function getNextUrlWithBasePath(path: string, baseUrl: string) {
 }
 
 export function getStrapiUrlWithBasePath(path: string, baseUrl: string) {
+  console.log('getStrapiUrlWithBasePath:baseUrl', baseUrl)
   const basePath = process.env.STRAPI_BASE_PATH || ''
+  console.log('getStrapiUrlWithBasePath:basePath', basePath)
   return new URL(`${basePath}${path}`, baseUrl)
 }
 
