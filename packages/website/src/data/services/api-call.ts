@@ -1,8 +1,7 @@
 import qs from 'qs'
 import {
   getStrapiURL,
-  getUrlWithBasePath,
-  getBasePath,
+  getStrapiWithBasePath,
   getFrontendURL,
 } from '@/lib/utils'
 import { getAuthToken } from '@/data/services/get-token'
@@ -33,7 +32,7 @@ export async function apiCall<T = any>(
   const baseUrl = isFrountend ? getFrontendURL() : getStrapiURL()
   console.log('path', path)
   console.log('baseUrl', baseUrl)
-  const url = getUrlWithBasePath(path, baseUrl)
+  const url = getStrapiWithBasePath(path, baseUrl)
 
   // 处理查询参数
   if (options.query) {

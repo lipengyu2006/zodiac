@@ -100,7 +100,12 @@ export function extractYouTubeID(urlOrID: string): string | null {
 }
 
 export function getUrlWithBasePath(path: string, baseUrl: string) {
-  const basePath = process.env.NEXT_BASE_PATH || '' // 确保有默认值
+  const basePath = process.env.NEXT_BASE_PATH || ''
+  return new URL(`${basePath}${path}`, baseUrl)
+}
+
+export function getStrapiWithBasePath(path: string, baseUrl: string) {
+  const basePath = process.env.STRAPI_BASE_PATH || ''
   return new URL(`${basePath}${path}`, baseUrl)
 }
 
