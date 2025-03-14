@@ -101,6 +101,7 @@ export function extractYouTubeID(urlOrID: string): string | null {
 
 export function getNextUrlWithBasePath(path: string, baseUrl: string) {
   const basePath = process.env.NEXT_BASE_PATH || ''
+  console.log('basePath', basePath)
   return new URL(`${basePath}${path}`, baseUrl)
 }
 
