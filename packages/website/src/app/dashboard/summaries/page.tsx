@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Search } from '@/components/custom/Search'
 import { PaginationComponent } from '@/components/custom/PaginationComponent'
-import LayoutWithBreadcrumb from '@/app/layout-with-breadcrumb'
+import LayoutWithBreadcrumb from '@/app/dashboard/layout-with-breadcrumb'
 import { SummaryForm } from '@/components/forms/SummaryForm'
 
 interface LinkCardProps {

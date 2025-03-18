@@ -1,4 +1,4 @@
-import LayoutWithBreadcrumb from '@/app/layout-with-breadcrumb'
+import LayoutWithBreadcrumb from '@/app/dashboard/layout-with-breadcrumb'
 import { getUserMeLoader } from '@/data/services/get-user-me-loader'
 import { ProfileForm } from '@/components/forms/ProfileForm'
 import { ProfileImageForm } from '@/components/forms/ProfileImageForm'

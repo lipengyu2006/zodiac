@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import { Providers } from '@/app/providers'
 import './globals.css'
 
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
-import { Sidebar } from '@/components/custom/SideBar'
 import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
@@ -19,12 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>
-          <SidebarProvider>
-            <Sidebar />
-            <SidebarInset>{children}</SidebarInset>
-          </SidebarProvider>
-        </Providers>
+        <Providers>{children}</Providers>
         <Toaster position="bottom-center" />
       </body>
     </html>

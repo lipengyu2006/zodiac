@@ -27,6 +27,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { usePathname } from 'next/navigation'
 import { getBasePath } from '@/lib/utils'
 
 const basePath = getBasePath()
@@ -158,6 +159,9 @@ export function AppSidebar({
     avatar: string
   }
 }) {
+  const pathname = usePathname()
+  console.log(pathname)
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>

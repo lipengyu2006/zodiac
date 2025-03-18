@@ -53,7 +53,6 @@ async function generateSummary(content: string, template: string) {
 export async function POST(req: NextRequest) {
   const user = await getUserMeLoader()
   const token = await getAuthToken()
-  console.log('from summarize route user-data', user)
   if (!user.ok || !token) {
     return new Response(
       JSON.stringify({ data: null, error: 'Not authenticated' }),

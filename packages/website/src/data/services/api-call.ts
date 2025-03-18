@@ -31,12 +31,9 @@ export async function apiCall<T = any>(
   isFrountend: boolean = false
 ): Promise<ApiResponse<T>> {
   const baseUrl = isFrountend ? getFrontendURL() : getStrapiURL()
-  console.log('path', path)
-  console.log('baseUrl', baseUrl)
   const url = isFrountend
     ? getNextUrlWithBasePath(path, baseUrl)
     : getStrapiUrlWithBasePath(path, baseUrl)
-  console.log('url', url)
   // 处理查询参数
   if (options.query) {
     if (typeof options.query === 'string') {
@@ -84,11 +81,8 @@ export async function apiCall<T = any>(
       fetchOptions.body = JSON.stringify({ ...options.body })
     }
 
-    console.log('fetchOptions', fetchOptions)
-    console.log('url', url)
     // 执行请求
     const response = await fetch(url, fetchOptions)
-    console.log('response', response)
 
     // DELETE操作特殊处理
     if (options.method === 'DELETE') {
