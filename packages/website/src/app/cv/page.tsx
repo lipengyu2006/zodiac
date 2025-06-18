@@ -162,10 +162,122 @@ export default function Page() {
                 </div>
                 <div className="text-muted-foreground text-pretty text-sm">
                   <div className="text-foreground/80 mt-1 text-pretty">
-                    我在写一份简历中的项目经验
-                    这是一款养成类游戏，玩家可以交友，聊天，装饰自己的房间等，可以做任务获得奖励等。我于2013年左右着手开发，从0开始，经过几次重构，达到了自己满意的架构。游戏至今约
-                    12
-                    年，历经大小功能百余次次添加，周期活动每周定期举行，前端项目yi
+                    这是一款养成类游戏，玩家可交友、聊天、装饰房间、完成任务获取奖励等。游戏在2013年从零开始开发，短期内经过多次重构，形成清晰高效、可维护性高的架构。
+                    <ul className="list-inside list-disc">
+                      <li>项目至今稳定运行约12年，累计百余次功能迭代，每周定期举办周期活动，架构依旧保持高效可维护。</li>
+                      <li>独立负责全部JavaScript编码及部分CSS样式适配，与日本同事（负责设计）合作，曾获日本Hangame网站游戏人气排行榜第二名。</li>
+                      <li>项目成功赢得日本团队尊重，为复杂前端项目设计积累宝贵经验。</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article role="article">
+              <div className="flex flex-col space-y-1 py-1">
+                <div className="flex items-center gap-x-2 text-base">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold">
+                    <a
+                      className="inline-flex hover:underline"
+                      href="https://nhn-techorus.com/c-chorus/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="c-chorus"
+                    >
+                      C-Chorus
+                    </a>
+                  </h3>
+                </div>
+                <div className="text-muted-foreground text-pretty text-sm">
+                  <div className="text-foreground/80 mt-1 text-pretty">
+                    使用React负责核心功能模块的设计与实现。主要工作包括：与产品团队协作，优化用户界面和交互体验，实现高效的数据展示与管理页面；对接后端API，实现多项云服务功能（如AWS/Google Cloud费用管理、服务监控等）；参与组件库的开发与维护，提升前端代码复用性和项目可维护性。项目上线后，有效提升了平台的易用性和客户满意度。
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article role="article">
+              <div className="flex flex-col space-y-1 py-1">
+                <div className="flex items-center gap-x-2 text-base">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold">
+                    <a
+                      className="inline-flex hover:underline"
+                      href="https://www.comico.jp/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="comico"
+                    >
+                      Comico
+                    </a>
+                  </h3>
+                </div>
+                <div className="text-muted-foreground text-pretty text-sm">
+                  <div className="text-foreground/80 mt-1 text-pretty">
+                    使用Vue负责核心页面与组件的开发和维护。主导实现了响应式布局，确保网站在各类电子设备（PC、平板、手机）上均有良好展示效果。与多语言、多地区团队协作，优化界面体验以适应不同国家和用户群体需求。
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article role="article">
+              <div className="flex flex-col space-y-1 py-1">
+                <div className="flex items-center gap-x-2 text-base">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold">
+                    <a
+                      className="inline-flex hover:underline"
+                      href="https://www.ypbooks.co.kr/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="ypbooks"
+                    >
+                      영풍문고（YPBooks）
+                    </a>
+                  </h3>
+                </div>
+                <div className="text-muted-foreground text-pretty text-sm">
+                  <div className="text-foreground/80 mt-1 text-pretty">
+                    基于Vue框架实现页面搭建与功能优化，提升用户体验和页面性能，协作完成多模块开发与上线。
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article role="article">
+              <div className="flex flex-col space-y-1 py-1">
+                <div className="flex items-center gap-x-2 text-base">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold">
+                    <a
+                      className="inline-flex hover:underline"
+                      href="https://www.kdkd.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="KDKD"
+                    >
+                      KDKD
+                    </a>
+                  </h3>
+                </div>
+                <div className="text-muted-foreground text-pretty text-sm">
+                  <div className="text-foreground/80 mt-1 text-pretty">
+                    参与KDKD粉丝互动平台的React前端开发，负责核心功能实现与用户界面优化，支持平台全生命周期（上线、运营、终止）顺利运行。
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article role="article">
+              <div className="flex flex-col space-y-1 py-1">
+                <div className="flex items-center gap-x-2 text-base">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold">
+                    <a
+                      className="inline-flex hover:underline"
+                      href="https://www.a-q-f.com/contents/extra/saison-toolbar/index.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="セゾンツールバー"
+                    >
+                      セゾンツールバー
+                    </a>
+                  </h3>
+                </div>
+                <div className="text-muted-foreground text-pretty text-sm">
+                  <div className="text-foreground/80 mt-1 text-pretty">
+                    负责开发与维护“セゾンツールバー”浏览器插件，实现积分获取、功能优化及用户体验提升。
                   </div>
                 </div>
               </div>
@@ -215,6 +327,35 @@ export default function Page() {
               </div>
             </article>
           </div>
+        </section>
+        <section className="my-8 w-full space-y-2">
+          <h3 className="text-2xl font-bold">技能</h3>
+          <ul className="flex list-none flex-wrap gap-1 p-0" aria-label="List of skills">
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">JavaScript/TypeScript</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">React/Next.js/Vue</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Node.js/Express.js/Koa.js</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Strapi</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Tailwind CSS</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Linux</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Mysql/PostgreSQL</div>
+            </li>
+            <li>
+              <div className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-primary/80 text-primary-foreground hover:bg-primary/60">Nginx</div>
+            </li>
+          </ul>
         </section>
       </div>
     </div>
